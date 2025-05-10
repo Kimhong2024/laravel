@@ -12,18 +12,28 @@
       }
       
       switch($p){
-          case 'Product':
-            $page = "pages.Product";  // Using dot notation for subfolders
+          case 'Customer':
+            $page = "pages.Customer";  // Using dot notation for subfolders
             break;
             
           // Add more cases for other pages as needed
-          case 'Users':
-            $page = "pages.Users";
+          case 'Category':
+            $page = "pages.Category";
             break;
+          case 'Product':
+            $page = "pages.Product";
+            break;
+          case 'HeroSection':
+            $page = "pages.HeroSection";
+            break;
+            case 'Order':
+              $page = "pages.Order";  // Using dot notation for subfolders
+              break;
+         
             
-          case 'Settings':
-            $page = "pages.Settings";
-            break;
+          // case 'Category':
+          //   $page = "pages.Category";
+          //   break;
             
           // Default case to handle unknown page requests
           default:

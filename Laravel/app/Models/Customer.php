@@ -18,6 +18,7 @@ class Customer extends Authenticatable
         'phone',
         'address',
         'password',
+        'is_active'
     ];
 
     protected $hidden = [
@@ -28,18 +29,25 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_active' => 'boolean'
     ];
 
     public static function rules($id = null)
     {
-        return [
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:customers,email,' . $id,
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'required|string|max:20',
             'address' => 'nullable|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|min:8'
+            'is_active' => 'boolean'
         ];
+
+        if (!$id) {
+            $rules['password'] = 'required|string|min:8|confirmed';
+            $rules['password_confirmation'] = 'required|string|min:8';
+        }
+
+        return $rules;
     }
 
     public static function updateRules($id)
